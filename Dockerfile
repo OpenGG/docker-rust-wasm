@@ -6,8 +6,8 @@ LABEL maintainer="OpenGG <liy099@gmail.com>"
 # https://gist.github.com/LukasKalbertodt/821ab8b85a25f4c54544cc43bed2c39f
 
 # source
-RUN sed -i "s|deb.debian.org|mirrors.tuna.tsinghua.edu.cn|" /etc/apt/sources.list \
-  && sed -i "s|security.debian.org|mirrors.tuna.tsinghua.edu.cn/debian-security|" /etc/apt/sources.list \
+RUN sed -i "s|deb.debian.org|mirrors.ustc.edu.cn|" /etc/apt/sources.list \
+  && sed -i "s|security.debian.org|mirrors.ustc.edu.cn/debian-security|" /etc/apt/sources.list \
   # deps
   && apt-get update \
   && apt-get install -y git build-essential cmake curl g++ python \
@@ -27,8 +27,9 @@ RUN sed -i "s|deb.debian.org|mirrors.tuna.tsinghua.edu.cn|" /etc/apt/sources.lis
   # binaryen
   && cd /rust-wasm \
   && git clone --single-branch --depth=1 https://github.com/WebAssembly/binaryen.git \
+  && cd binaryen \
   && mkdir working \
-  cd working \
+  && cd working \
   && cmake .. \
   && make -j8 \
   && cd .. \
