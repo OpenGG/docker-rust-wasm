@@ -36,7 +36,7 @@ RUN sed -i "s|deb.debian.org|mirrors.ustc.edu.cn|" /etc/apt/sources.list \
   && cp -r working /rust-wasm-bin/binaryen \
   # rustup
   && cd /rust-wasm \
-  && curl https://sh.rustup.rs -sSf | sh \
+  && curl https://sh.rustup.rs -sSf | sh -s -- -y \
   # clean
   && apt-get autoclean \
   && apt-get clean \
