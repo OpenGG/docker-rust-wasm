@@ -19,7 +19,7 @@ if [ ! -f "${INPUT}" ]; then
   exit 2
 fi
 
-rustc -O --crate-type=lib --emit=llvm-bc -C opt-level=3 "${INPUT}" && \
+rustc -O --crate-type=lib --emit=llvm-bc "${INPUT}" && \
   llc -march=wasm32 "${BASENAME}.bc" && \
   s2wasm -o "${BASENAME}.wast" "${BASENAME}.s" && \
   wasm-as "${BASENAME}.wast"
