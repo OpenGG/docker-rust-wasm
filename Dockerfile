@@ -7,7 +7,7 @@ LABEL maintainer="OpenGG <liy099@gmail.com>"
 
 ADD "rust-wasm.sh" /usr/local/bin/
 
-RUN chmod +x rust-wasm.sh \
+RUN chmod +x /usr/local/bin/rust-wasm.sh \
   # apt source
   # && sed -i "s|deb.debian.org|mirrors.ustc.edu.cn|" /etc/apt/sources.list \
   # && sed -i "s|security.debian.org|mirrors.ustc.edu.cn/debian-security|" /etc/apt/sources.list \
