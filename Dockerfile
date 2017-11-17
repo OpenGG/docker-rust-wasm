@@ -23,22 +23,19 @@ RUN chmod +x /usr/local/bin/rust-wasm.sh \
   && cd llvm \
   && mkdir working \
   && cd working \
-  && cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly .. \
+  && cmake -DCMAKE_INSTALL_PREFIX=/rust-wasm-bin/llvm -DCMAKE_BUILD_TYPE=Release -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly .. \
   && make -j8 \
-  && cd .. \
-  && cp -r working /rust-wasm-bin/llvm \
+  && make install \
   # binaryen
   && cd /rust-wasm \
   && git clone --single-branch --depth=1 https://github.com/WebAssembly/binaryen.git \
   && cd binaryen \
   && mkdir working \
   && cd working \
-  && cmake .. \
+  && cmake -DCMAKE_INSTALL_PREFIX=/rust-wasm-bin/binaryen .. \
   && make -j8 \
-  && cd .. \
-  && cp -r working /rust-wasm-bin/binaryen \
+  && make install \
   # rustup
-  && cd /rust-wasm \
   && curl https://sh.rustup.rs -sSf | sh -s -- -y \
   # clean
   && apt-get autoclean \
