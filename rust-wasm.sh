@@ -15,7 +15,8 @@ BASENAME="${1%.rs}"
 INPUT="${BASENAME}.rs"
 
 if [ ! -f "${INPUT}" ]; then
-    echo "File not found: ${INPUT}"
+  echo "File not found: ${INPUT}"
+  exit 2
 fi
 
 rustc -O --crate-type=lib --emit=llvm-bc -C opt-level=3 "${INPUT}" && \
