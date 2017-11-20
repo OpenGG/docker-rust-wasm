@@ -13,6 +13,6 @@ jobs:
           name: Build and push Docker image
           command: |
             docker build -t opengg/rust-wasm .
-            echo "$DOCKER_PASSWORD_BASE64"|base64 --decode|docker login -u "$DOCKER_USER" --password-stdin
+            echo "$DOCKER_PASSWORD_BASE64"|base64 -d|docker login -u "$DOCKER_USER" --password-stdin
             docker push opengg/rust-wasm
 
