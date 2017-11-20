@@ -38,9 +38,9 @@ RUN chmod +x /usr/local/bin/rust-wasm.sh \
   # rustup
   && curl https://sh.rustup.rs -sSf | sh -s -- -y \
   # clean
-  && apt-get purge git build-essential cmake curl g++ python \
-  && apt-get autoclean \
-  && apt-get clean \
+  && apt-get purge -y git build-essential cmake curl g++ python \
+  && apt-get autoclean -y \
+  && apt-get clean -y \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /rust-wasm
 
 ENV PATH /root/.cargo/bin:/rust-wasm-bin/llvm/bin:/rust-wasm-bin/binaryen/bin:${PATH}
