@@ -12,7 +12,8 @@ jobs:
       - run:
           name: Build and push Docker image
           command: |
-            docker build -t opengg/rust-wasm:local .
+            docker build -t opengg/rust-wasm:latest .
             echo "$DOCKER_PASSWORD_BASE64"|base64 -d|docker login -u "$DOCKER_USER" --password-stdin
-            docker push opengg/rust-wasm:local opengg/rust-wasm:latest
-            docker push opengg/rust-wasm:local "opengg/rust-wasm:1.0.$CIRCLE_BUILD_NUM"
+            docker tag opengg/rust-wasm:latest "opengg/rust-wasm:1.0.$CIRCLE_BUILD_NUM"
+            docker push opengg/rust-wasm:latest
+            docker push "opengg/rust-wasm:1.0.$CIRCLE_BUILD_NUM"
