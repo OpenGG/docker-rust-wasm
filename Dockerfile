@@ -22,7 +22,7 @@ RUN cd / \
   && cd llvm \
   && mkdir working \
   && cd working \
-  && cmake -DCMAKE_INSTALL_PREFIX=/rust-wasm-bin/llvm -DCMAKE_BUILD_TYPE=Release -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly .. \
+  && cmake -DLLVM_DEFAULT_TARGET_TRIPLE=wasm32-unknown-unknown -DCMAKE_INSTALL_PREFIX=/rust-wasm-bin/llvm -DCMAKE_BUILD_TYPE=Release -DLLVM_EXPERIMENTAL_TARGETS_TO_BUILD=WebAssembly .. \
   && make -j8 \
   && make install \
   # binaryen
@@ -35,7 +35,7 @@ RUN cd / \
   && make -j8 \
   && make install \
   # rustup
-  && curl https://sh.rustup.rs -sSf | sh -s -- -y \
+  && curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly \
   # clean
   && apt-get purge -y --auto-remove git build-essential cmake curl g++ python \
   && apt-get autoclean -y \
