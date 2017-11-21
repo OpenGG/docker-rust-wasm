@@ -5,21 +5,8 @@ LABEL maintainer="OpenGG <liy099@gmail.com>"
 # Compiling Rust to Wasm with the LLVM wasm-backend (without Emscripten)
 # https://gist.github.com/LukasKalbertodt/821ab8b85a25f4c54544cc43bed2c39f
 
-# enviroment
-ENV PATH /root/.cargo/bin:/rust-wasm-bin/llvm/bin:/rust-wasm-bin/binaryen/bin:${PATH}
-
-# working directory of container
-VOLUME ["/work"]
-WORKDIR /work
-
-# entrypoint script
-ENTRYPOINT [ "rust-wasm.sh" ]
-
-ADD "rust-wasm.sh" /usr/local/bin/
-
 # install deps
 RUN cd / \
-  && chmod +x /usr/local/bin/rust-wasm.sh \
   # apt source
   # && sed -i "s|deb.debian.org|mirrors.ustc.edu.cn|" /etc/apt/sources.list \
   # && sed -i "s|security.debian.org|mirrors.ustc.edu.cn/debian-security|" /etc/apt/sources.list \
@@ -54,3 +41,15 @@ RUN cd / \
   && apt-get autoclean -y \
   && apt-get clean -y \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /rust-wasm
+
+# enviroment
+ENV PATH /root/.cargo/bin:/rust-wasm-bin/llvm/bin:/rust-wasm-bin/binaryen/bin:${PATH}
+
+# working directory of container
+VOLUME ["/work"]
+WORKDIR /work
+
+# entrypoint script
+ENTRYPOINT [ "rust-wasm.sh" ]
+
+ADD "rust-wasm.sh" /usr/local/bin/
