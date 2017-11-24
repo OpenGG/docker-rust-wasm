@@ -20,13 +20,12 @@ RUN cd / \
   && cd /rust-wasm \
   && git clone --single-branch --depth=1 https://github.com/rust-lang/rust.git \
   && cd rust \
-  # build rust configure
-  && cp config.toml.example config.toml \
-  && echo '' >> config.toml \
-  && echo 'prefix = "/rust-wasm-bin/rust"' >> config.toml \
-  && echo 'docs = false' >> config.toml \
   # build rust
-  && ./configure --prefix=/rust-wasm-bin/rust --target=wasm32-unknown-unknown --set llvm.experimental-targets=WebAssembly \
+  && ./configure \
+    --set llvm.experimental-targets=WebAssembly \
+    --set build.target=wasm32-unknown-unknown \
+    --set build.docs=false \
+    --set install.prefix=/rust-wasm-bin/rust \
   && ./x.py build \
   && ./x.py install \
   # clean
