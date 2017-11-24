@@ -22,8 +22,8 @@ RUN cd / \
   && cd rust \
   # build rust
   && ./configure \
+    --target=wasm32-unknown-unknown \
     --set llvm.experimental-targets=WebAssembly \
-    --set build.target=wasm32-unknown-unknown \
     --set build.docs=false \
     --set install.prefix=/rust-wasm-bin/rust \
   && ./x.py build \
