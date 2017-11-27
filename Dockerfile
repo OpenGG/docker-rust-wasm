@@ -12,13 +12,13 @@ RUN cd / \
   # && sed -i "s|security.debian.org|mirrors.ustc.edu.cn/debian-security|" /etc/apt/sources.list \
   # deps
   && apt-get update \
-  && apt-get install -y curl \
+  && apt-get install -y build-essential curl \
   # rustup
   && curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly \
   && export PATH=/root/.cargo/bin:${PATH}\
   && cargo install --git https://github.com/alexcrichton/wasm-gc \
   # clean
-  && apt-get purge -y --auto-remove curl \
+  && apt-get purge -y --auto-remove build-essential curl \
   && apt-get autoclean -y \
   && apt-get clean -y \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
