@@ -17,7 +17,7 @@ RUN cd / \
   && mkdir /rust-wasm-bin \
   && cd /rust-wasm-bin \
   # emsdk
-  && curl https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz | tar -xf - \
+  && curl https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz | tar -zxf - \
   && cd emsdk-portable \
   && ./emsdk update \
   && ./emsdk install sdk-incoming-64bit --shallow \
