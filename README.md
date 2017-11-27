@@ -36,8 +36,8 @@ There are three tags of this image.
 | tag              | dependencies         | example wasm build size | notes                                                                                       |
 |------------------|----------------------|-------------------------|---------------------------------------------------------------------------------------------|
 | latest (default) | rust, llvm, binaryen | 0.4KB                   | Generating a smallest possible, zero overhead wasm file.                                    |
-| emscripten       | rust, emscripten     | 156KB                   | Generating a wasm file and a companion js file, both come with emscripten syscall wrapping. |
-| unknown          | rust, wasm-gc        | 150KB                   | Generating a bloat wasm file, then shrink it with wasm-gc.                                  |
+| emscripten       | rust, emscripten     | 88KB                    | Generating a wasm file and a companion js file, both come with emscripten syscall wrapping. |
+| unknown          | rust, wasm-gc        | 44KB                    | Generating a bloat wasm file, then shrink it with wasm-gc.                                  |
 
 If you don't known what to choose, use `emscripten` tag:
 
