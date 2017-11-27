@@ -15,6 +15,7 @@ RUN cd / \
   && apt-get install -y curl \
   # rustup
   && curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly \
+  && export PATH=/root/.cargo/bin:${PATH}\
   && cargo install --git https://github.com/alexcrichton/wasm-gc \
   # clean
   && apt-get purge -y --auto-remove curl \
