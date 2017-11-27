@@ -19,5 +19,5 @@ if [ ! -f "${INPUT}" ]; then
   exit 2
 fi
 
-rustc -O --crate-type=lib --target=wasm32-unknown-unknown "${INPUT}" && \
+rustc -O --target=wasm32-unknown-unknown "${INPUT}" && \
   wasm-gc "${BASENAME}.wasm" "${BASENAME}-gc.wasm"
