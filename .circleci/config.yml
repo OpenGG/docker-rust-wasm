@@ -16,7 +16,7 @@ jobs:
             echo "$DOCKER_PASSWORD_BASE64"|base64 -d|docker login -u "$DOCKER_USER" --password-stdin
             DOCKER_BUILD_TAG="${CIRCLE_BRANCH}"
             DOCKER_BUILD_VERSION="1.0.${CIRCLE_BUILD_NUM}"
-            if [ "${DOCKER_BUILD_TAG}" == "master"]; then
+            if [ "${DOCKER_BUILD_TAG}" == "master" ]; then
               DOCKER_BUILD_TAG="latest"
             else
               DOCKER_BUILD_VERSION="${DOCKER_BUILD_TAG}-${DOCKER_BUILD_VERSION}"
