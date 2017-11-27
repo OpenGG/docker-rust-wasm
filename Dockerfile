@@ -15,7 +15,8 @@ RUN cd / \
   && apt-get install -y build-essential curl \
   # rustup
   && curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly \
-  && export PATH=/root/.cargo/bin:${PATH}\
+  && export PATH=/root/.cargo/bin:${PATH} \
+  && rustup target add wasm32-unknown-unknown \
   && cargo install --git https://github.com/alexcrichton/wasm-gc \
   # clean
   && apt-get purge -y --auto-remove build-essential curl \
