@@ -35,7 +35,7 @@ RUN cd / \
   && make -j8 \
   && make install \
   # rustup
-  && curl https://sh.rustup.rs -sSf | sh -s -- -y \
+  && curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly \
   # clean
   && apt-get purge -y --auto-remove git build-essential cmake curl g++ python \
   && apt-get autoclean -y \
