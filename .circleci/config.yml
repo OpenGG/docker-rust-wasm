@@ -12,8 +12,16 @@ jobs:
       - run:
           name: Build and push Docker image
           command: |
-            docker build -t opengg/rust-wasm:latest .
+            docker build -t opengg/rust-wasm:local .
             echo "$DOCKER_PASSWORD_BASE64"|base64 -d|docker login -u "$DOCKER_USER" --password-stdin
-            docker tag opengg/rust-wasm:latest "opengg/rust-wasm:1.0.$CIRCLE_BUILD_NUM"
-            docker push opengg/rust-wasm:latest
-            docker push "opengg/rust-wasm:1.0.$CIRCLE_BUILD_NUM"
+            DOCKER_BUILD_TAG="${CIRCLE_BRANCH}"
+            DOCKER_BUILD_VERSION="1.0.${CIRCLE_BUILD_NUM}"
+            if [ "${DOCKER_BUILD_TAG}" == "master"]; then
+              DOCKER_BUILD_TAG="latest"
+            else
+              DOCKER_BUILD_VERSION="${DOCKER_BUILD_TAG}-${DOCKER_BUILD_VERSION}"
+            fi
+            docker tag opengg/rust-wasm:local "opengg/rust-wasm:${DOCKER_BUILD_TAG}"
+            docker tag opengg/rust-wasm:local "opengg/rust-wasm:${DOCKER_BUILD_VERSION}"
+            docker push "opengg/rust-wasm:${DOCKER_BUILD_TAG}"
+            docker push "opengg/rust-wasm:${DOCKER_BUILD_VERSION}"
