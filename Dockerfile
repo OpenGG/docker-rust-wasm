@@ -22,6 +22,12 @@ RUN cd / \
   && ./emsdk update \
   && ./emsdk install sdk-incoming-64bit --shallow \
   && ./emsdk activate sdk-incoming-64bit \
+  # clean up emsdk
+  && rm -rf ./clang/*/src && \
+  && find . -name "*.o" -exec rm {} \; && \
+  && find . -name "*.a" -exec rm {} \; && \
+  && find . -name "*.tmp" -exec rm {} \; && \
+  && find . -type d -name ".git" -prune -exec rm -rf {} \; && \
   # rustup
   && curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly \
   # clean
