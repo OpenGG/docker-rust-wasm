@@ -31,7 +31,7 @@ RUN cd / \
   # rustup
   && curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain nightly \
   # clean
-  && apt-get purge -y --auto-remove git build-essential cmake curl g++ python \
+  && apt-get purge -y --auto-remove git build-essential cmake curl g++ \
   && apt-get autoclean -y \
   && apt-get clean -y \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
