@@ -20,7 +20,7 @@ RUN cd / \
   && curl https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz | tar -zxf - \
   && cd emsdk-portable \
   && ./emsdk update \
-  && ./emsdk install sdk-incoming-64bit --shallow \
+  && ./emsdk install sdk-incoming-64bit --shallow --build=Release \
   && ./emsdk activate sdk-incoming-64bit \
   # clean up emsdk
   && rm -rf ./clang/*/src \
